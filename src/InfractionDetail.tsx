@@ -49,16 +49,16 @@ const InfractionDetail = () => {
     }
   };
 
-  const pn = [
-    "000000000",
+  const pns = [
     "400913976",
     "400964481",
     "401491900",
     "401900614",
     "401906698",
+    "000000000",
   ];
 
-  const buildProcessNumbersOptions = (pn: string, isFirst: boolean) => {
+  const buildProcessNumbersOptions = (pn: string, index: number) => {
     return (
       <div key={pn}>
         <input
@@ -66,12 +66,12 @@ const InfractionDetail = () => {
           id={`opt-${pn}`}
           name="process-number"
           value={pn}
-          defaultChecked={isFirst}
+          defaultChecked={index === 0}
         />
         <span style={{ margin: "0px 10px" }}>|</span>
 
         <label htmlFor={`opt-${pn}`}>
-          {isFirst
+          {index === pns.length - 1
             ? `PROCESS NUMBER NOT FOUND - ${pn}`
             : `PROCESS NUMBER - ${pn}`}
         </label>
@@ -121,7 +121,7 @@ const InfractionDetail = () => {
           <div>
             <h2>Process Number</h2>
 
-            {pn.map((pn, index) => buildProcessNumbersOptions(pn, index === 0))}
+            {pns.map((pn, index) => buildProcessNumbersOptions(pn, index))}
           </div>
         </div>
 
