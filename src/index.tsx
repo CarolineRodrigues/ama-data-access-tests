@@ -1,19 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { DriverLicenceInfo } from "./DriverLicenceInfo";
+import { DriverStatus } from "./DriverStatus";
+import { InfractionDetail } from "./InfractionDetail";
+import { Infractions } from "./Infractions";
+import { LicencePoints } from "./LicencePoints";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  document.getElementById("root") as HTMLElement
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="driver-status" element={<DriverStatus />} />
+        <Route path="licence-points" element={<LicencePoints />} />
+        <Route path="driver-licence-info" element={<DriverLicenceInfo />} />
+        <Route path="infractions" element={<Infractions />} />
+        <Route path="infraction-detail" element={<InfractionDetail />} />
+
+        <Route path="*" element={<Navigate to="/driver-status" replace />} />
+      </Routes>
+    </BrowserRouter>
+  </React.StrictMode>
+);
